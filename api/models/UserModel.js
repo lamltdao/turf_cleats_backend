@@ -20,7 +20,12 @@ const UserSchema= new Schema({
     phone_number:{
         type:String,
         required:true,
-        unique:true
+        
     },
+    role:{
+        type:String,
+        default:'member',
+        enum: ['admin','member']
+    }
 });
 module.exports=model('Users',UserSchema);

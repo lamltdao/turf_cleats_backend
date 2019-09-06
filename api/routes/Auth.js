@@ -41,14 +41,14 @@ router.post('/login',(req,res)=>{
     const password=req.body.password;
     if(username&&password){
         UserModel.findOne({username:username},(err,userFound)=>{
-            if(err)res.status(err.code).json(err);
+            if(err)res.status(500).json(err);
             else if(!userFound){
                 console.log('User not found');
             }
             else{
                 if(bcrypt.compareSync(password,userFound.password)){
                     const token=jwt.sign({id:userFound._id,username:username},'secretKey');
-                    res.send(token);
+                    res.send({token,id:userFound._id});
                 }
                 else console.log('Wrong password');
                 
@@ -57,4 +57,4 @@ router.post('/login',(req,res)=>{
     }
 })
 
-module.exports=AuthRouter;
+module.exports=router;

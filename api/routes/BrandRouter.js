@@ -4,7 +4,7 @@ const router= express.Router();
 
 router.post('/',(req,res)=>{
     BrandModel.create(req.body,(err,brandCreated)=>{
-        if(err)res.status(err.code).json(err);
+        if(err)res.status(500).json(err);
         else {
             res.status(201).json(brandCreated);
         }
@@ -13,7 +13,7 @@ router.post('/',(req,res)=>{
 
 router.get('/',(req,res)=>{
     BrandModel.find({},(err,brandFound)=>{
-        if(err)res.status(err.code).json(err);
+        if(err)res.status(500).json(err);
         else {
             res.status(200).json(brandFound);
         }
@@ -23,7 +23,7 @@ router.get('/',(req,res)=>{
 router.get('/:id',(req,res)=>{
     const id=req.params.id;
     BrandModel.findById(id,(err,brandFound)=>{
-        if(err)res.status(err.code).json(err);
+        if(err)res.status(500).json(err);
         else if(!brandFound){
             res.status(404).json('Brand Not Found');
         }
@@ -36,7 +36,7 @@ router.get('/:id',(req,res)=>{
 router.put('/:id',(req,res)=>{
     const id=req.params.id;
     BrandModel.findByIdAndUpdate(id,req.body,{new:true},(err,brandUpdated)=>{
-        if(err)res.status(err.code).json(err);
+        if(err)res.status(500).json(err);
         else if(!brandUpdated){
             res.status(404).json('Brand Not Found');
         }
@@ -48,7 +48,7 @@ router.put('/:id',(req,res)=>{
 
 router.delete('/:id',(req,res)=>{
     BrandModel.findByIdAndDelete(id,(err,brandDeleted)=>{
-        if(err)res.status(err.code).json(err);
+        if(err)res.status(500).json(err);
         else if(!brandDeleted){
             res.status(404).json('Brand Not Found');
         }
