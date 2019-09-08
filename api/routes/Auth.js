@@ -4,30 +4,7 @@ const router= express.Router();
 const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
 
-/* front end */
-/*const access_token=window.localStorage.getItem('access_token');
-        if(access_token){
-            $('#login').hide();//chỉ làm k nhìn thấy, vx còn html
-            $.ajax({
-                url:'http://localhost:6789/api/auth/me',
-                type:'GET',
-                //headers:gửi req lên server
-                headers:{
-                    Authentication:access_token
-                },
-                success:function(data){
-                if(data.success&&data.user){
-                    $('#user').text(data.user.userName);
-                    
-                }
 
-                },
-                error:function(err){
-
-                }
-            })
-        }
- */
 router.get('/account',(req,res)=>{
     const token=req.query.access_token||req.headers.authentication;
     jwt.verify(token,'secretKey',(err,decoded)=>{
