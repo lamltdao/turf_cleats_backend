@@ -8,7 +8,7 @@ const jwt=require('jsonwebtoken');
 router.get('/account',(req,res)=>{
     const token=req.query.access_token||req.headers.authentication;
     jwt.verify(token,'secretKey',(err,decoded)=>{
-        if(err)res.status(err.code).json(err);
+        if(err)res.status(401).json(err);
         else res.status(200).json(decoded);
     })
 })
@@ -24,7 +24,7 @@ router.post('/login',(req,res)=>{
             }
             else{
                 if(bcrypt.compareSync(password,userFound.password)){
-                    const token=jwt.sign({id:userFound._id,username:username},'secretKey');
+                    const token=jwt.sign({id:userFound._id,name:userFound.name,role:userFound.role},'secretKey');
                     res.send({token,id:userFound._id});
                 }
                 else console.log('Wrong password');
