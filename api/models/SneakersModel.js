@@ -13,7 +13,10 @@ const SneakersSchema=new Schema({
     prize:{
         type:Number
     },
-    size:[Number],
+    size:[{
+        type: String,
+        enum:['8','8.5','9','9.5','10','10.5','11','11.5','12']
+    }],
     image:String
 });
 
