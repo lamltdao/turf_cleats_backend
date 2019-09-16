@@ -8,7 +8,8 @@ const PackageSchema=new Schema({
             type:Schema.Types.ObjectId,
             ref:'Sneakers'
         },
-        quantity:Number
+        quantity:Number,
+        size:Number
     }]
 });
 
