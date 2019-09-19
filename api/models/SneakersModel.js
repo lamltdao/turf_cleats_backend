@@ -10,7 +10,7 @@ const SneakersSchema=new Schema({
         type:Schema.Types.ObjectId,
         ref:'Brand'
     },
-    prize:{
+    price:{
         type:Number
     },
     size:[{
