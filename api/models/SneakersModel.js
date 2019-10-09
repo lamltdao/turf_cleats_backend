@@ -33,7 +33,12 @@ const SneakersSchema=new Schema({
         default:[]
     }
 });
+<<<<<<< HEAD
 const sneakersModel=model('Sneakers',SneakersSchema);
 module.exports={
     commentModel,sneakersModel
 }
+=======
+
+module.exports=model('Sneakers',SneakersSchema);
+>>>>>>> 84eccfe3f4e1f5c5ecd7cf68d5ff53c21264adb2
