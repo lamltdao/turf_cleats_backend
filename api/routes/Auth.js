@@ -20,16 +20,16 @@ router.post('/login',(req,res)=>{
         UserModel.findOne({username:username},(err,userFound)=>{
             if(err)res.status(500).json(err);
             else if(!userFound){
-                  console.log('User not found');
-            //    res.status(404).json('User not found')
+                  //console.log('User not found');
+                res.status(404).json('User not found')
             }
             else{
                 if(bcrypt.compareSync(password,userFound.password)){
                     const token=jwt.sign({id:userFound._id,name:userFound.name,role:userFound.role},'secretKey');
                     res.send({token,id:userFound._id});
                 }
-                else {console.log('Wrong password');
-                    //res.status(401).json('Wrong password');
+                else {//console.log('Wrong password');
+                    res.status(401).json('Wrong password');
                 }
             }
         })
