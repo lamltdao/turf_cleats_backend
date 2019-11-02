@@ -54,7 +54,7 @@ app.post("/charge", async (req, res) => {
 
 
 
-const port = process.env.port || 2504;
+const port = process.env.PORT || 2504;
 app.listen(port, (err) => {
     if (err) console.log(err);
     else console.log('App is listening');
