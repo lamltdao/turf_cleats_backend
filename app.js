@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 app.use(cors({
     origin: ['https://turfcleats.herokuapp.com']
 }));
-mongoose.connect('mongodb+srv://daoletunglam:daoletunglam@cluster0-jxsx8.gcp.mongodb.net/test?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://daoletunglam:daoletunglam@cluster0-jxsx8.gcp.mongodb.net/final_project?retryWrites=true&w=majority',
     { useNewUrlParser: true },
     (err) => {
         if (err) console.log(err);
