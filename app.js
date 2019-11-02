@@ -12,7 +12,9 @@ const stripe = require("stripe")("sk_test_ZxqGw3yHax8la8pr4HPJE8h000kRU2ufNk");
 const PackageModel=require('./api/models/PackageModel');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({
+    origin: ['https://turfcleats.herokuapp.com']
+}));
 mongoose.connect('mongodb+srv://daoletunglam:daoletunglam@cluster0-jxsx8.gcp.mongodb.net/test?retryWrites=true&w=majority',
     { useNewUrlParser: true },
     (err) => {
