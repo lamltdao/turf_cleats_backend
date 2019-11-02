@@ -13,7 +13,7 @@ const PackageModel=require('./api/models/PackageModel');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
-mongoose.connect('mongodb://localhost:27017/final_project',
+mongoose.connect('mongodb+srv://daoletunglam:daoletunglam@cluster0-jxsx8.gcp.mongodb.net/test?retryWrites=true&w=majority',
     { useNewUrlParser: true },
     (err) => {
         if (err) console.log(err);
