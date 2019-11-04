@@ -13,8 +13,10 @@ const PackageModel=require('./api/models/PackageModel');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors({
-    origin: ['https://turfcleats.herokuapp.com']
+    origin: ['https://turfcleats.herokuapp.com','http://localhost:3000']  
 }));
+
+
 mongoose.connect('mongodb+srv://daoletunglam:daoletunglam@cluster0-jxsx8.gcp.mongodb.net/final_project?retryWrites=true&w=majority',
     { useNewUrlParser: true },
     (err) => {
