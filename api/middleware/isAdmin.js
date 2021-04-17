@@ -18,7 +18,7 @@ const isAdmin=(req,res,next)=>{
                                 next();
                             }
                             else{
-                                res.status(403).json('Forbidden');
+                                res.status(403).json('Forbidden. You are not the admin');
                             }
                         }
                     })
