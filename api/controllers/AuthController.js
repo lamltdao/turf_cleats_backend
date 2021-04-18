@@ -1,11 +1,14 @@
+if(process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 const UserModel = require("../models/UserModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 module.exports = {
-  verifyToken: (req, res) => {
+  getAccountInfoByToken: (req, res) => {
     const token = req.query.access_token || req.headers.authentication;
-    jwt.verify(token, "secretKey", (err, decoded) => {
+    jwt.verify(token, process.env.BCRYPT_SECRET_KEY, (err, decoded) => {
       if (err) res.status(401).json(err);
       else res.status(200).json(decoded);
     });
@@ -22,7 +25,7 @@ module.exports = {
           if (bcrypt.compareSync(password, userFound.password)) {
             const token = jwt.sign(
               { id: userFound._id, name: userFound.name, role: userFound.role },
-              "secretKey"
+              process.env.BCRYPT_SECRET_KEY
             );
             res.send({ token, id: userFound._id });
           } else {
