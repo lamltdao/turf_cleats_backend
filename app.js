@@ -12,11 +12,9 @@ const cors = require("cors");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(
-  cors({
-    origin: process.env.BASE_URL,
-  })
-);
+app.use(cors({
+  origin: ['https://turfcleats.herokuapp.com','http://localhost:3000'],
+}));
 
 mongoose.connect(
   process.env.DATABASE_URL,
@@ -32,7 +30,7 @@ app.use("/api/sneakers", SneakersRouter);
 app.use("/api/package", PackageRouter);
 app.use("/api/user", UserRouter);
 
-const port = process.env.PORT || 2504;
+const port = process.env.PORT;
 app.listen(port, (err) => {
   if (err) console.log(err);
   else console.log("App is listening on port " + port);
