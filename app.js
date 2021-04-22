@@ -12,9 +12,7 @@ const cors = require("cors");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors({
-  origin: ['https://turfcleats.herokuapp.com','http://localhost:3000'],
-}));
+app.use(cors());
 
 mongoose.connect(
   process.env.DATABASE_URL,
