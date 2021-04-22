@@ -10,7 +10,11 @@ const SneakersRouter = require("./api/routes/SneakersRouter");
 const PackageRouter = require("./api/routes/PackageRouter");
 const cors = require("cors");
 
-app.use(cors());
+const corsOptions = {
+  origin: '*',
+  optionsSuccessStatus: 200,
+}
+app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
