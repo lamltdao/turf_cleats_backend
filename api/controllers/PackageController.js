@@ -1,12 +1,6 @@
 const PackageModel = require("../models/PackageModel");
 
 module.exports = {
-  createNewPackage: (req, res) => {
-    PackageModel.create(req.body, (err, packageCreated) => {
-      if (err) res.status(500).json(err);
-      else res.status(201).json(packageCreated);
-    });
-  },
   getAllPackages: (req, res) => {
     PackageModel.find({}, (err, pakageFound) => {
       if (err) res.status(500).json(err);
@@ -49,5 +43,18 @@ module.exports = {
         res.status(404).json("Package Not Found");
       } else res.status(204).json("Package Successfully Deleted");
     });
-  }
+  },
+  makePayment: async (req, res) => {
+    try {
+      const package = await PackageModel.create({
+        cart: req.body.package.cart,
+        address: req.body.package.address,
+        totalPrice: req.body.package.totalPrice,
+        stripeToken: req.body.source,
+      });
+      res.status(201).json(package);
+    } catch (err) {
+      res.status(500).end();
+    }
+  },
 }

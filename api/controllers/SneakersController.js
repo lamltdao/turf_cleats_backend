@@ -19,7 +19,7 @@ module.exports = {
     })
   },
   getSneakersById: (req,res)=>{
-    const id=req.params.id;
+    const { id } = req.params;
     SneakersModel.findById(id,(err,sneakersFound)=>{
         if(err)res.status(500).json(err);
         else if(!sneakersFound){
@@ -31,7 +31,7 @@ module.exports = {
     })
   },
   updateSneakersById: (req,res)=>{
-    const id=req.params.id;
+    const { id } = req.params;
     SneakersModel.findByIdAndUpdate(id,req.body,{new:true},(err,sneakersUpdated)=>{
         if(err)res.status(500).json(err);
         else if(!sneakersUpdated){
@@ -43,6 +43,7 @@ module.exports = {
     })
   },
   deleteSneakersById: (req,res)=>{
+    const { id } = req.params;
     SneakersModel.findByIdAndDelete(id,(err,sneakersDeleted)=>{
         if(err)res.status(500).json(err);
         else if(!sneakersDeleted){
@@ -54,14 +55,17 @@ module.exports = {
     })
   },
   addComment: (req,res)=>{
-    const id=req.params.id;
+    const { id } = req.params;
+    const { id: userId } = req.decoded;
+
     SneakersModel.findById(id,(err,sneakersFound)=>{
-        if(err)res.status(500).json(err);
+        if(err) res.status(500).json(err);
         else if(!sneakersFound){
             res.status(404).json('Sneakers Not Found');
         }
         else {
-            CommentModel.create(req.body,(err,commentCreated)=>{
+            const { content } = req.body;
+            CommentModel.create({content, user: userId},(err,commentCreated)=>{
                 if(err)res.status(500).json(err);
                 else {
                    sneakersFound['comment'].push(commentCreated);
@@ -74,12 +78,8 @@ module.exports = {
         }
     })
   },
-  /*req.body:{
-    user:user_id
-    content:String
-  }*/
   getComment: (req,res)=>{
-    const id=req.params.id;
+    const { id } = req.params;
     SneakersModel
     .findById(id)
     .populate('comment.user')

@@ -2,10 +2,10 @@ const BrandModel=require('../models/BrandModel');
 
 module.exports = {
   getAllBrands: (req,res)=>{
-    BrandModel.find({},(err,brandFound)=>{
+    BrandModel.find({},(err,brandsFound)=>{
         if(err)res.status(500).json(err);
         else {
-            res.status(200).json(brandFound);
+            res.status(200).json(brandsFound);
         }
     })
   },

@@ -4,11 +4,13 @@ if(process.env.NODE_ENV !== 'production') {
 const jwt=require('jsonwebtoken');
 
 const verifyToken = (req,res,next) =>{
-  const token = req.query.access_token || req.headers.authentication;
+  const authHeader = req.headers['authorization'] // 'Bearer' + token
+  const token = authHeader && authHeader.split(' ')[1]
+  console.log(token)
   jwt.verify(token, process.env.BCRYPT_SECRET_KEY, (err, decoded) => {
     if (err) res.status(401).json(err);
     else {
-      res.decoded = decoded
+      req.decoded = decoded
       next()
     }
   });
