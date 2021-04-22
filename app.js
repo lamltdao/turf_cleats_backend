@@ -11,7 +11,7 @@ const PackageRouter = require("./api/routes/PackageRouter");
 const cors = require("cors");
 
 const corsOptions = {
-  origin: process.env.BASE_URL,
+  origin: [process.env.BASE_URL],
   credentials: true,
 }
 app.use(cors(corsOptions));
