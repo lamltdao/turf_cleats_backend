@@ -11,8 +11,8 @@ const PackageRouter = require("./api/routes/PackageRouter");
 const cors = require("cors");
 
 const corsOptions = {
-  origin: '*',
-  optionsSuccessStatus: 200,
+  origin: process.env.BASE_URL,
+  credentials: true,
 }
 app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
