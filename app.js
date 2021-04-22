@@ -10,9 +10,9 @@ const SneakersRouter = require("./api/routes/SneakersRouter");
 const PackageRouter = require("./api/routes/PackageRouter");
 const cors = require("cors");
 
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
 
 mongoose.connect(
   process.env.DATABASE_URL,
